@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:youtube_flutter_app/telas/biblioteca.dart';
+import 'package:youtube_flutter_app/telas/em_alta.dart';
+import 'package:youtube_flutter_app/telas/incricoes.dart';
+import 'package:youtube_flutter_app/telas/inicio.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -13,10 +17,10 @@ class _HomeState extends State<Home> {
 
 
     List<Widget> telas = [
-      Text("Ínicio"),
-      Text("Em alta"),
-      Text("Inscrições"),
-      Text("Biblioteca"),
+      Inicio(),
+      EmAlta(),
+      Inscricoes(),
+      Biblioteca()
     ];
 
     return Scaffold(
@@ -52,7 +56,7 @@ class _HomeState extends State<Home> {
             ),
         ],
       ),
-      body: Container(),
+      body: telas[_indiceAtual],
       bottomNavigationBar: BottomNavigationBar(
         unselectedItemColor: Colors.grey,
         showUnselectedLabels: true,
