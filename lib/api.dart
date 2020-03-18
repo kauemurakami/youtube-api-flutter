@@ -1,5 +1,6 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'model/video.dart'; 
 
 const CHAVE_YOUTUBE_API = "AIzaSyD1-aMW6fZqP3WpLTd6PsEb31H1ZqkTd7I";
 const ID_CHANNEL = "UCwXdFgeE9KYzlDdR7TG9cMw";
@@ -9,7 +10,7 @@ class Api {
 
   Api();
 
-  pesquisar(String pesquisa) async {
+   Future<List<Video>> pesquisar(String pesquisa) async {
     http.Response response = await http.get(
       URL_BASE + "search"
       "?part=snippet"
@@ -22,8 +23,15 @@ class Api {
     );
 
     if(response.statusCode == 200){
-      //print(response.body);
+      
+      //videos
       Map<String,dynamic> dadosJson = json.decode(response.body);
+      List<Video> videos = dadosJson["items"].map<Video>(
+        (map){
+          return Video.fromJson(map);
+        }
+      ).toList();
+      return videos;
 
     }else{
 
