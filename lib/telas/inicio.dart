@@ -26,10 +26,7 @@ class _InicioState extends State<Inicio> {
         future: _listarVideos(widget.pesquisa),
         builder: (context, snapshot){
             switch (snapshot.connectionState){
-
               case ConnectionState.none:
-                print("none");
-                break;
               case ConnectionState.active:
               case ConnectionState.waiting:
                 return Center(
@@ -41,9 +38,15 @@ class _InicioState extends State<Inicio> {
                 if(snapshot.hasData){
 
                   return ListView.separated(
+                    itemCount: snapshot.data.length,
+                      separatorBuilder: (context, index) => Divider(
+                        height: 2,
+                        color: Colors.grey,
+                      ),
                       itemBuilder: (context, index){
                         List<Video> videos = snapshot.data;
                         Video video = videos[index];
+                        print(video);
                         return Column(
                           children: <Widget>[
                             Container(
@@ -61,13 +64,9 @@ class _InicioState extends State<Inicio> {
                             ),
                           ],
                         );
-                      },
-                      separatorBuilder: (context, index) => Divider(
-                        height: 2,
-                        color: Colors.grey,
-                      ),
-                      itemCount: snapshot.data.length);
-                }else{
+                      }
+                  );
+                  }else{
                   Center(
                     child: Text("Nenhum dado a ser exibido")
                   );

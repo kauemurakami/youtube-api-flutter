@@ -2,7 +2,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'model/video.dart'; 
 
-const CHAVE_YOUTUBE_API = "AIzaSyD1-aMW6fZqP3WpLTd6PsEb31H1ZqkTd7I";
+const API_KEY = "AIzaSyAjsfsXGjq8ZKuPGXPap5IgMgZVBTolBag";
 const ID_CHANNEL = "UCwXdFgeE9KYzlDdR7TG9cMw";
 const URL_BASE = "https://www.googleapis.com/youtube/v3/";
 
@@ -17,7 +17,7 @@ class Api {
       "&type=video"
       "&maxResults=20"
       "&order=date"
-      "&key=$CHAVE_YOUTUBE_API"
+      "&key=$API_KEY"
       "&channelId=$ID_CHANNEL"
       "&q=$pesquisa"
     );
